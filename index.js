@@ -25,6 +25,22 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(express.static('public', options))
 // #############################################################################
 
+app.get("/user/gsi", async (req, res) => {
+  const params = {
+    TableName: "drab-jade-caiman-sariCyclicDB",
+    IndexName: "gsi_prj",
+    KeyConditionExpression: "gsi_prj = :gsi",
+    ExpressionAttributeValues: {
+      ":gsi": "springrain",
+    },
+  };
+
+  const data = await ddbDocClient.send(new QueryCommand(params));
+  return res.status(200).json({
+    data: data.Items,
+  });
+});
+
 app.get("/user/:id", async (req, res) => {
   const id = req.params.id;
 
@@ -55,24 +71,6 @@ app.post("/user", async (req, res) => {
   await ddbDocClient.send(new PutCommand(params));
   return res.status(200).json({
     msg: "okay",
-  });
-});
-
-app.get("/user/gsi", async (req, res) => {
-  const params = {
-    TableName: "drab-jade-caiman-sariCyclicDB",
-    IndexName: "gsi_prj",
-    KeyConditionExpression: "gsi_prj = :gsi",
-    ExpressionAttributeValues: {
-      ":gsi": "springrain",
-    },
-  };
-
-  console.log("++++++++");
-  const data = await ddbDocClient.send(new QueryCommand(params));
-  console.log("========", data.Items);
-  return res.status(200).json({
-    data: data.Items,
   });
 });
 
