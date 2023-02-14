@@ -28,6 +28,7 @@ app.get("/user/:id", async (req, res) => {
     TableName: "drab-jade-caiman-sariCyclicDB",
     Key: {
       pk: id,
+      sk: "s",
     },
   };
 
@@ -40,6 +41,7 @@ app.post("/user", async (req, res) => {
     TableName: "drab-jade-caiman-sariCyclicDB",
     Item: {
       pk: "ghkdh2324",
+      sk: "s",
       name: "Abu Zafor",
     },
   };
