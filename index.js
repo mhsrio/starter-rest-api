@@ -68,6 +68,7 @@ app.get("/user/gsi", async (req, res) => {
     },
   };
 
+  console.log("++++++++");
   const data = await ddbDocClient.send(new QueryCommand(params));
   console.log("========", data.Items);
   return res.status(200).json({
