@@ -2,7 +2,11 @@ const express = require("express");
 const app = express();
 const db = require("@cyclic.sh/dynamodb");
 const { ddbDocClient } = require("./config");
-const { PutCommand, GetCommand } = require("@aws-sdk/lib-dynamodb");
+const {
+  PutCommand,
+  GetCommand,
+  QueryCommand,
+} = require("@aws-sdk/lib-dynamodb");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -43,12 +47,29 @@ app.post("/user", async (req, res) => {
       pk: "ghkdh2324",
       sk: "s",
       name: "Abu Zafor",
+      gsi_prj: "springrain",
     },
   };
 
   await ddbDocClient.send(new PutCommand(params));
   return res.status(200).json({
     msg: "okay",
+  });
+});
+
+app.get("/user/gsi", async (req, res) => {
+  const params = {
+    TableName: "drab-jade-caiman-sariCyclicDB",
+    IndexName: "gsi_prj",
+    KeyConditionExpression: "gsi_prj = :gsi",
+    ExpressionAttributeValues: {
+      ":gsi": "springrain",
+    },
+  };
+
+  const data = await ddbDocClient.send(new QueryCommand(params));
+  return res.status(200).json({
+    data,
   });
 });
 
