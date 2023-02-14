@@ -44,10 +44,11 @@ app.post("/user", async (req, res) => {
   const params = {
     TableName: "drab-jade-caiman-sariCyclicDB",
     Item: {
-      pk: "ghkdh2324",
+      pk: "ghkdh" + new Date().getTime(),
       sk: "s",
       name: "Abu Zafor",
       gsi_prj: "springrain",
+      prj: "something",
     },
   };
 
