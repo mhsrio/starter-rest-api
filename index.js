@@ -64,7 +64,6 @@ app.post("/user", async (req, res) => {
       sk: "s",
       name: "Abu Zafor",
       gsi_prj: "springrain",
-      prj: "something",
     },
   };
 
