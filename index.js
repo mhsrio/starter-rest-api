@@ -27,7 +27,7 @@ app.get("/user/:id", async (req, res) => {
   const params = {
     TableName: "drab-jade-caiman-sariCyclicDB",
     Key: {
-      primaryKey: id,
+      pk: id,
     },
   };
 
@@ -39,7 +39,7 @@ app.post("/user", async (req, res) => {
   const params = {
     TableName: "drab-jade-caiman-sariCyclicDB",
     Item: {
-      primaryKey: "ghkdh2324",
+      pk: "ghkdh2324",
       name: "Abu Zafor",
     },
   };
