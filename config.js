@@ -1,26 +1,26 @@
-const { DynamoDBDocumentClient } = require('@aws-sdk/lib-dynamodb');
-const { awsRegion, awsEndPointUrl } = require('./variables');
+const { DynamoDBDocumentClient } = require("@aws-sdk/lib-dynamodb");
 
 const awsConfigs = {
-  region: awsRegion,
-  endpoint: awsEndPointUrl
+  region: process.env.AWS_REGION,
+  endpoint: "https://dynamodb.ap-southeast-2.amazonaws.com",
 };
 
+const ddbClient = new DynamoDBClient(awsConfigs);
 
 const marshallOptions = {
   convertEmptyValues: false,
   removeUndefinedValues: true,
-  convertClassInstanceToMap: false
+  convertClassInstanceToMap: false,
 };
 
 const unMarshallOptions = {
-  wrapNumbers: false
+  wrapNumbers: false,
 };
 
 const ddbDocClient = DynamoDBDocumentClient.from(ddbClient, {
   marshallOptions,
-  unMarshallOptions
+  unMarshallOptions,
 });
 module.exports = {
-  ddbDocClient
+  ddbDocClient,
 };

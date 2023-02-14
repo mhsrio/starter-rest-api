@@ -25,7 +25,7 @@ app.get("/user/:id", async (req, res) => {
   const id = req.params.id;
 
   const params = {
-    TableName: "User",
+    TableName: "drab-jade-caiman-sariCyclicDB",
     Key: {
       primaryKey: id,
     },
@@ -37,9 +37,9 @@ app.get("/user/:id", async (req, res) => {
 
 app.post("/user", async (req, res) => {
   const params = {
-    TableName: "User",
+    TableName: "drab-jade-caiman-sariCyclicDB",
     Item: {
-      primaryKey: "Id",
+      primaryKey: "ghkdh2324",
       name: "Abu Zafor",
     },
   };
